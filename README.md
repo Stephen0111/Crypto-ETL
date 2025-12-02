@@ -55,7 +55,7 @@ Cloud Composer handles scheduling, retries, logging, monitoring, and task orches
 - SQL transformations finalize the analytics table  
 
 ### 🔹 Analytics-Ready Reporting Layer  
-Cleaned data is connected to **Looker Studio ** for use by data analysts.
+Cleaned data is connected to **Looker Studio** for use by data analysts.
 
 ---
 
@@ -97,20 +97,22 @@ Analytics-ready, cleaned dataset.
 
 
 ### **1.Airflow**
-! [DAG](Assets/dag1.png)
+![DAG](Assets/dag1.png)
 
 ![DAG](Assets/dag2.png)
 
 
 ### **2. GCS Bucket**
-![DAG and GCS Bucket](assets/dag_gcs_bucket.png)
+![GCS Bucket](Assets/bucket.png)
+![GCS Object](Assets/object.png)
 
 
 ### **3. Big Query**
-![DAG and GCS Bucket](assets/dag_gcs_bucket.png)
+![Big Query](Assets/bigquery1.png)
+![Big Query](Assets/bigqueryclean.png)
 
 
 ### **4. Looker**
-![DAG and GCS Bucket](assets/dag_gcs_bucket.png)
-```md
-![DAG and GCS Bucket](assets/dag_gcs_bucket.png)
+![Looker](Assets/looker.png)
+
+
