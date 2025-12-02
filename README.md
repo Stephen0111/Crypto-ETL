@@ -94,10 +94,12 @@ Analytics-ready, cleaned dataset.
 
 ## 📸 Project Screenshots
 
-> 📌 **Replace the file paths below with your uploaded screenshots inside an `assets/` folder.**
 
-### **1.Airflow DAG Page**
-![DAG and GCS Bucket](assets/dag_gcs_bucket.png)
+
+### **1.Airflow**
+! [DAG](Assets/dag1.png)
+
+![DAG](Assets/dag2.png)
 
 
 ### **2. GCS Bucket**
