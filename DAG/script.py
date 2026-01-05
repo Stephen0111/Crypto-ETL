@@ -15,11 +15,11 @@ import json
 from google.cloud import storage
 
 
-# -----------------------------
+
 
 # CONFIG
 
-# -----------------------------
+
 
 PROJECT_ID = "crypto-data-engineering"
 
@@ -29,14 +29,12 @@ TABLE_RAW = "raw_prices"
 
 TABLE_CLEAN = "prices_hourly"
 
-GCS_BUCKET = "us-central1-crypto-data-b39bf30b-bucket"
+GCS_BUCKET = "***-crypto-data-bucket"
 
 
-# -----------------------------
 
-# DEFAULT ARGS
 
-# -----------------------------
+# DEFAULT 
 
 default_args = {
 
@@ -53,11 +51,11 @@ default_args = {
 }
 
 
-# -----------------------------
+
 
 # FUNCTION: Fetch Top 20 Coins → Save to GCS
 
-# -----------------------------
+
 
 def fetch_top_coins_prices(**kwargs):
 
@@ -131,11 +129,11 @@ def fetch_top_coins_prices(**kwargs):
     return gcs_uri
 
 
-# -----------------------------
+
 
 # DAG DEFINITION
 
-# -----------------------------
+
 
 with DAG(
 
@@ -156,7 +154,7 @@ with DAG(
 ) as dag:
 
 
-    # 1️⃣ Fetch prices and save to GCS
+    # Fetch prices and save to GCS
 
     fetch_prices = PythonOperator(
 
@@ -167,7 +165,7 @@ with DAG(
     )
 
 
-    # 2️⃣ Load raw JSON from GCS to BigQuery
+    # Load raw JSON from GCS to BigQuery
 
     load_raw = BigQueryInsertJobOperator(
 
@@ -208,7 +206,7 @@ with DAG(
 
     # 
 
-    # 3️⃣ Transform raw table → clean hourly table (WITH PARTITIONING)
+    # Transform raw table → clean hourly table (WITH PARTITIONING)
 
 transform = BigQueryInsertJobOperator(
 
