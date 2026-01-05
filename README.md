@@ -7,7 +7,7 @@ The pipeline is orchestrated end-to-end using **Cloud Composer (Managed Apache A
 
 ---
 
-## 🧭 Architecture Overview
+## Architecture Overview
 
          ┌─────────────────────┐
          │   CoinGecko API     │
@@ -41,25 +41,25 @@ The pipeline is orchestrated end-to-end using **Cloud Composer (Managed Apache A
 
 ---
 
-## ✨ Key Features
+## Key Features
 
-### 🔹 Automated Real-Time Crypto Ingestion  
+### Automated Real-Time Crypto Ingestion  
 Fetches prices for the **Top 20 cryptocurrencies** every 5 minutes using CoinGecko's API.
 
-### 🔹 Cloud-Orchestrated ETL with Airflow  
+### Cloud-Orchestrated ETL with Airflow  
 Cloud Composer handles scheduling, retries, logging, monitoring, and task orchestration.
 
-### 🔹 Data Lake + Data Warehouse Architecture  
+### Data Lake + Data Warehouse Architecture  
 - GCS stores raw JSON files  
 - BigQuery stores raw & cleaned structured tables  
 - SQL transformations finalize the analytics table  
 
-### 🔹 Analytics-Ready Reporting Layer  
+### Analytics-Ready Reporting Layer  
 Cleaned data is connected to **Looker Studio** for use by data analysts.
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 | Layer | Technology | Purpose |
 |-------|------------|---------|
@@ -72,13 +72,13 @@ Cleaned data is connected to **Looker Studio** for use by data analysts.
 
 ---
 
-## 📂 Output Tables (BigQuery)
+## Output Tables (BigQuery)
 
-### **1️⃣ crypto.raw_prices**  
+### **crypto.raw_prices**  
 Stores raw JSON API responses + timestamps.  
 Schema is autodetected from GCS.
 
-### **2️⃣ crypto.prices_hourly**  
+### **crypto.prices_hourly**  
 Analytics-ready, cleaned dataset.
 
 | Column | Description |
@@ -92,7 +92,7 @@ Analytics-ready, cleaned dataset.
 
 ---
 
-## 📸 Project Screenshots
+## Project Screenshots
 
 
 
