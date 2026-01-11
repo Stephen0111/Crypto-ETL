@@ -1,9 +1,9 @@
-#  Crypto ETL Pipeline with Apache Airflow, GCS & BigQuery  
-*A Production-Grade Cloud Data Engineering Pipeline Built on Google Cloud*
+# Crypto ETL Pipeline with Apache Airflow, GCS & BigQuery  
+*A Production-Grade, Scalable Cloud Data Engineering Pipeline on Google Cloud*
 
-This project is a fully automated **real-time ETL pipeline** that continuously extracts live cryptocurrency prices for the **Top 20 coins**, stores raw data in **Google Cloud Storage (GCS)**, loads them into **BigQuery**, transforms them into analytics-ready tables, and finally exposes them in **Looker Studio** for real-time dashboards.
+This project implements a **high‑throughput, production‑ready ETL pipeline** engineered to ingest, process, and serve real‑time cryptocurrency market data at scale. The system continuously retrieves pricing data for the **Top 20 cryptocurrencies**, persists immutable raw payloads in **Google Cloud Storage (GCS)**, loads them into **BigQuery**, applies deterministic SQL transformations, and exposes curated analytical datasets to **Looker Studio**.
 
-The pipeline is orchestrated end-to-end using **Cloud Composer (Managed Apache Airflow)** and runs every 5 minutes.
+The pipeline is orchestrated using **Cloud Composer (Managed Apache Airflow)** and executes on a 5‑minute interval with built‑in observability, operational resilience, and cost‑optimized data processing patterns.
 
 ---
 
@@ -37,25 +37,29 @@ The pipeline is orchestrated end-to-end using **Cloud Composer (Managed Apache A
          │ (Dashboards/Reports)│
          └─────────────────────┘
 
-
-
 ---
 
 ## Key Features
 
 ### Automated Real-Time Crypto Ingestion  
-Fetches prices for the **Top 20 cryptocurrencies** every 5 minutes using CoinGecko's API.
+Continuously ingests pricing data for the **Top 20 cryptocurrencies** at 5‑minute intervals, ensuring consistent coverage and minimal API overhead.
 
 ### Cloud-Orchestrated ETL with Airflow  
-Cloud Composer handles scheduling, retries, logging, monitoring, and task orchestration.
+Cloud Composer provides managed orchestration with retry policies, SLA monitoring, lineage visibility, and modular DAG design for long‑term maintainability.
 
-### Data Lake + Data Warehouse Architecture  
-- GCS stores raw JSON files  
-- BigQuery stores raw & cleaned structured tables  
-- SQL transformations finalize the analytics table  
+### Scalable Data Lake + Warehouse Architecture  
+- GCS acts as a cost‑efficient, durable raw landing zone  
+- BigQuery stores both raw and refined datasets optimized for analytical workloads  
+- SQL transformations enforce schema consistency, deduplication, and time‑series alignment  
+- Partitioning and clustering strategies reduce query cost and improve performance  
+
+### Production-Ready Operational Design  
+- Idempotent ingestion and MERGE‑based transformations prevent duplication  
+- Schema evolution is handled through raw‑zone autodetection and controlled downstream modeling  
+- Logging, alerting, and monitoring integrated through Cloud Composer and GCP native tools  
 
 ### Analytics-Ready Reporting Layer  
-Cleaned data is connected to **Looker Studio** for use by data analysts.
+Curated datasets are exposed to **Looker Studio**, enabling analysts to build dashboards without requiring direct access to raw or semi‑structured data.
 
 ---
 
@@ -63,56 +67,50 @@ Cleaned data is connected to **Looker Studio** for use by data analysts.
 
 | Layer | Technology | Purpose |
 |-------|------------|---------|
-| **Orchestration** | Apache Airflow (Cloud Composer) | ETL automation & scheduling |
-| **Data Lake** | Google Cloud Storage | Raw JSON storage |
-| **Warehouse** | Google BigQuery | Querying, transformation & analytics |
-| **API Source** | CoinGecko API | Live cryptocurrency data |
-| **Visualization** | Looker Studio | Dashboards for analysts |
-| **Language** | Python | ETL logic (Requests, GCS Client) |
+| **Orchestration** | Apache Airflow (Cloud Composer) | Managed scheduling, retries, monitoring, and DAG orchestration |
+| **Data Lake** | Google Cloud Storage | Immutable raw data storage with low-cost retention |
+| **Warehouse** | Google BigQuery | Scalable analytical engine for transformations and reporting |
+| **API Source** | CoinGecko API | Real-time cryptocurrency market data |
+| **Visualization** | Looker Studio | Business intelligence and dashboarding |
+| **Language** | Python | ETL logic, API integration, and GCP client operations |
 
 ---
 
 ## Output Tables (BigQuery)
 
 ### **crypto.raw_prices**  
-Stores raw JSON API responses + timestamps.  
-Schema is autodetected from GCS.
+Stores raw JSON API responses with ingestion timestamps.  
+Schema is autodetected to support upstream API changes without pipeline interruption.
 
 ### **crypto.prices_hourly**  
-Analytics-ready, cleaned dataset.
+A refined, analytics‑ready dataset designed for time‑series analysis and dashboard consumption.  
+Partitioned by date and clustered by symbol to optimize query performance and cost.
 
 | Column | Description |
 |--------|-------------|
-| symbol | Token name |
+| symbol | Token symbol |
 | price | USD price |
-| price_ts | Timestamp parsed from raw event |
-| price_date | Date-only column |
-| price_hour | Extracted hour from timestamp |
-| source | Data provider |
+| price_ts | Timestamp extracted from the raw event |
+| price_date | Date component of the timestamp |
+| price_hour | Hour extracted for aggregation |
+| source | Data provider identifier |
 
 ---
 
 ## Project Screenshots
 
-
-
-### **1.Airflow**
+### **1. Airflow**
 ![DAG](Assets/dag1.png)
 
 ![DAG](Assets/dag2.png)
-
 
 ### **2. GCS Bucket**
 ![GCS Bucket](Assets/bucket.png)
 ![GCS Object](Assets/object.png)
 
-
-### **3. Big Query**
+### **3. BigQuery**
 ![Big Query](Assets/bigquery1.png)
 ![Big Query](Assets/bigqueryclean.png)
 
-
 ### **4. Looker**
 ![Looker](Assets/looker.png)
-
-
