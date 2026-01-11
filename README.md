@@ -7,7 +7,9 @@ The pipeline is orchestrated using **Cloud Composer (Managed Apache Airflow)** a
 
 ---
 
-## Architecture Overview
+## Architecture 
+
+![Architecture](Assets/Crypto.png)
 
          ┌─────────────────────┐
          │   CoinGecko API     │
